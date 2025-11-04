@@ -50,6 +50,14 @@ def main():
         print("\nAsistente: ", end="", flush=True)
         response = rag_chain.invoke(question, include_sources=False)
         print(response['answer'])
+
+        if 'sources' in response:
+            print("\n[Fragmentos recuperados]")
+            for i, source in enumerate(response['sources'], 1):
+                print(f"\n{i}. Categoria: {source['category']}")
+                print(f"   Archivo: {source['source']}")
+                print(f"   Contenido: {source['content']}")
+
         print("\n" + "-" * 70)
 
 
