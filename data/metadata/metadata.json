@@ -85,6 +85,8 @@
       "accreditations": ["Alta Calidad"]
     }
   ],
+  "scholarship_financialaid_info": "data/scholarships/becas_financiacion.md",
+  "enrollment_info": "data/enrollment/inscripciones.md",
   "metadata": {
     "total_programs": 12,
     "abet_accredited": ["Ingeniería Mecánica", "Ingeniería Química"],
