@@ -22,7 +22,7 @@ from ragas.metrics import (
     FactualCorrectness
 )
 from ragas.llms import LangchainLLMWrapper
-from langchain_openai import ChatOpenAI
+from langchain_openai import AzureChatOpenAI
 
 from setup_retrieval import setup_retrieval_system
 from rag.chain import UPBRAGChain
@@ -51,9 +51,14 @@ class RAGEvaluator:
         self.rag_chain = rag_chain
         self.eval_questions = self._load_eval_questions(eval_questions_path)
         
-        # Initialize o4-mini LLM for RAGAS evaluation
         self.evaluator_llm = LangchainLLMWrapper(
-            ChatOpenAI(model="o4-mini", temperature=1)
+            AzureChatOpenAI(
+                azure_deployment="o4-mini",
+                openai_api_version="2024-12-01-preview",
+                azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+                temperature=1,  # Required for o4-mini
+            )
         )
         
     def _load_eval_questions(self, path: str) -> List[Dict]:
