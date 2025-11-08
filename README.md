@@ -97,10 +97,10 @@ Create a `.env` file with your Azure OpenAI credentials (for embeddings & LLM):
 AZURE_OPENAI_API_KEY=your_key_here
 AZURE_OPENAI_ENDPOINT=https://your-endpoint.openai.azure.com/
 AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-small
-AZURE_OPENAI_LLM_DEPLOYMENT=gpt-4o-mini  # or gpt-4.1-nano or o4-mini
+AZURE_OPENAI_LLM_DEPLOYMENT=gpt-4o-mini  # or gpt-4.1-nano (recommended for evaluation)
 ```
 
-Note: RAGAS evaluation uses the same Azure OpenAI deployment. No separate OpenAI API key is required.
+Note: For evaluation, gpt-4.1-nano is recommended because RAGAS metrics need temperature flexibility. o4-mini only supports temperature=1 which causes compatibility issues with RAGAS. The RAG system uses the same Azure OpenAI deployment for both generation and evaluation.
 
 ### Running the Pipeline
 

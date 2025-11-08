@@ -130,7 +130,7 @@ Required environment variables:
 AZURE_OPENAI_API_KEY=your_key
 AZURE_OPENAI_ENDPOINT=your_endpoint
 AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-small
-AZURE_OPENAI_LLM_DEPLOYMENT=gpt-4.1-nano  # or o4-mini (temperature must be 1)
+AZURE_OPENAI_LLM_DEPLOYMENT=gpt-4.1-nano  # Recommended for RAGAS (flexible temperature)
 ```
 
-Note: RAGAS evaluation uses your Azure OpenAI deployment, no separate OpenAI API key needed.
+Note: RAGAS evaluation uses your Azure OpenAI deployment. The system uses gpt-4.1-nano by default because o4-mini only supports temperature=1, but RAGAS metrics need temperature flexibility. No separate OpenAI API key needed.
