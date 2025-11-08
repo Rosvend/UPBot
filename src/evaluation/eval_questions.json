@@ -1,0 +1,92 @@
+[
+  {
+    "question": "¿Cuáles son los requisitos de admisión para ingresar a un programa de ingeniería en la UPB?",
+    "ground_truth": "Los requisitos generales son: crear usuario en el formulario de inscripción, completar el formulario incluyendo carta de presentación, pagar los derechos de admisión (valor varía por sede: Medellín $229.800, Bucaramanga $0, Montería $251.851, Palmira $166.727), presentar la prueba de admisión y esperar los resultados. Los derechos de admisión no son reembolsables.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa si el modelo trae información del archivo de inscripciones sin inventar requisitos falsos."
+  },
+  {
+    "question": "¿Cuánto cuesta estudiar Ingeniería en Ciencia de Datos en la UPB?",
+    "ground_truth": "El costo semestral de Ingeniería en Ciencia de Datos es de $11.928.000 COP para el primer semestre 2026.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa precisión numérica y que no se confunda con costos de otros programas."
+  },
+  {
+    "question": "¿Qué becas están disponibles para estudiantes de pregrado en la UPB?",
+    "ground_truth": "Las becas disponibles incluyen: Beca Educación Superior Municipio de Sabaneta (50% Alcaldía + 25% UPB + 25% estudiante), Programa de Estímulos Superé de Envigado (hasta 100% instituciones oficiales o 70% privadas), becas en alianza con Generación E, ICETEX y Sapiencia. Pueden ser totales o parciales según el programa.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa si el modelo extrae múltiples opciones específicas del archivo de becas."
+  },
+  {
+    "question": "¿Qué ingeniería debería estudiar si me gustan los videojuegos?",
+    "ground_truth": "Si te gustan los videojuegos, deberías considerar Ingeniería en Diseño y Entretenimiento Digital (IDED), que se especializa en desarrollo de videojuegos, animación y entretenimiento digital.",
+    "category": "Recomendación basada en preferencias",
+    "notes": "Evalúa capacidad de recomendación basada en intereses sin confundir con Sistemas."
+  },
+  {
+    "question": "¿Qué opciones de financiamiento existen además de becas?",
+    "ground_truth": "Las alternativas financieras además de becas incluyen opciones de crédito a través de ICETEX y otras entidades financieras en alianza con la UPB.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa distinción entre becas y financiamiento crediticio."
+  },
+  {
+    "question": "¿Qué ingenierías están acreditadas ABET en la UPB?",
+    "ground_truth": "Las ingenierías acreditadas ABET en la UPB son: Ingeniería Química e Ingeniería Mecánica.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa identificación precisa de programas ABET sin añadir programas incorrectos."
+  },
+  {
+    "question": "¿Qué ingenierías tienen acreditación de alta calidad en la UPB?",
+    "ground_truth": "Las ingenierías con acreditación de alta calidad en la UPB son: Ingeniería Química, Ingeniería Mecánica, Ingeniería de Sistemas e Informática, Ingeniería Industrial, Ingeniería Electrónica e Ingeniería Eléctrica.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa identificación de múltiples programas acreditados sin invenciones."
+  },
+  {
+    "question": "¿Existe una ingeniería en Biotecnología en la UPB?",
+    "ground_truth": "No, en la UPB Medellín no existe una ingeniería en Biotecnología entre los programas ofrecidos.",
+    "category": "Detección de ausencia",
+    "notes": "Evalúa capacidad de indicar ausencia de programa sin inventar información."
+  },
+  {
+    "question": "¿Se ve computación cuántica en Ingeniería de Sistemas?",
+    "ground_truth": "No, en el plan de estudios de Ingeniería de Sistemas e Informática no se menciona computación cuántica como materia específica.",
+    "category": "Verificación de plan de estudios",
+    "notes": "Evalúa que no se inventen materias que no aparecen en el plan de estudios."
+  },
+  {
+    "question": "¿Cuánto dura Ingeniería de Sistemas en la UPB?",
+    "ground_truth": "Ingeniería de Sistemas e Informática en la UPB tiene una duración de 9 semestres.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa extracción correcta de duración sin confundir con otros programas."
+  },
+  {
+    "question": "¿Qué ingeniería debo estudiar si me interesa la inteligencia artificial?",
+    "ground_truth": "Para inteligencia artificial puedes considerar Ingeniería de Sistemas e Informática (desarrollo de software, machine learning), Ingeniería en Ciencia de Datos (analítica avanzada, modelos predictivos) o Ingeniería Electrónica (sistemas embebidos inteligentes).",
+    "category": "Recomendación basada en preferencias",
+    "notes": "Evalúa recomendaciones múltiples coherentes basadas en área de interés."
+  },
+  {
+    "question": "¿La UPB tiene programas de doble titulación?",
+    "ground_truth": "Sí, la UPB ofrece dobles programas como: Ingeniería en Ciencia de Datos con Ingeniería de Sistemas e Informática, y Ingeniería en Diseño y Entretenimiento Digital con Ingeniería de Sistemas e Informática.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa identificación de opciones de doble titulación específicas."
+  },
+  {
+    "question": "¿Dónde puedo estudiar Ingeniería Aeronáutica en Colombia?",
+    "ground_truth": "Puedes estudiar Ingeniería Aeronáutica en la Universidad Pontificia Bolivariana (UPB) en Medellín.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa identificación de programa específico y su ubicación."
+  },
+  {
+    "question": "¿Qué promedio necesito mantener para conservar la beca de Sabaneta?",
+    "ground_truth": "Para conservar la Beca Educación Superior del Municipio de Sabaneta debes mantener un promedio igual o superior a 3.5 por semestre.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa extracción de requisito específico de una beca en particular."
+  },
+  {
+    "question": "¿Cuáles son las áreas de desempeño de un ingeniero de sistemas?",
+    "ground_truth": "Las áreas de desempeño de un ingeniero de sistemas incluyen: programación de software, desarrollo de aplicaciones empresariales, inteligencia de negocios, analítica de datos, arquitectura de software, gestión de bases de datos, administración de sistemas informáticos, desarrollo de soluciones tecnológicas con metodologías modernas, implementación de DevOps, y aplicación de tecnologías como Blockchain, IA/Machine Learning e IoT.",
+    "category": "Recuperación factual directa",
+    "notes": "Evalúa extracción de múltiples áreas profesionales sin mezclar con otros programas."
+  }
+]

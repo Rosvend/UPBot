@@ -222,3 +222,8 @@ faiss_index/
 *.index
 *.pkl
 *.faiss
+
+# Evaluation Results
+# Keep results locally but don't commit to repo
+src/evaluation/results/*.json
+!src/evaluation/results/.gitkeep

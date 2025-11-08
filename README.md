@@ -12,9 +12,10 @@ A Retrieval-Augmented Generation (RAG) system to help prospective students explo
 - **Context-Enriched Chunks**: Each chunk tagged with [PROGRAMA:], [CODIGO:], [DURACION:], [CATEGORIA:], [SECCION:]
 - **Conversation memory** for multi-turn dialogues
 - **Source citations** for transparency
+- **Comprehensive Evaluation Suite**: Retrieval metrics (recall@k, precision@k, context length) and RAGAS metrics (context precision, faithfulness, factual correctness, context recall) using o4-mini
 - 17 curated documents covering 12 engineering programs plus metadata catalog
 - 370 optimized chunks with hierarchical metadata for efficient retrieval
-- **Tested Anti-Hallucination**: 4/4 tests passing for accuracy (see `test_hallucination.py`)
+- 15 evaluation questions covering factual retrieval, recommendations, and edge cases
 
 ## Tech Stack
 
@@ -25,6 +26,7 @@ A Retrieval-Augmented Generation (RAG) system to help prospective students explo
 | **Vector Store** | FAISS (CPU version) |
 | **Framework** | LangChain 1.0.2 |
 | **Retrieval** | BM25 (rank-bm25) + MMR + RRF Ensemble |
+| **Evaluation** | RAGAS 0.2.15+ with o4-mini |
 | **UI** | Gradio *(planned)* |
 | **Deployment** | Hugging Face Spaces *(planned)* |
 | **Package Manager** | UV |
@@ -45,6 +47,11 @@ A Retrieval-Augmented Generation (RAG) system to help prospective students explo
 ├── src/
 │   ├── embeddings/
 │   │   └── embeddings.py    # Azure/OpenAI embeddings initialization
+│   ├── evaluation/
+│   │   ├── eval_questions.json  # 15 curated evaluation questions
+│   │   ├── eval.py          # Comprehensive evaluation system
+│   │   ├── README.md        # Evaluation documentation
+│   │   └── results/         # Evaluation results (JSON)
 │   ├── loader/
 │   │   └── ingest.py        # Document loader with metadata.json support
 │   ├── processing/
@@ -58,6 +65,7 @@ A Retrieval-Augmented Generation (RAG) system to help prospective students explo
 │   ├── pipeline.py          # Document preparation pipeline
 │   └── setup_retrieval.py   # Complete retrieval system setup
 │
+├── run_evaluation.py        # Evaluation runner script
 ├── vectorstore/             # FAISS index files (gitignored)
 └── pyproject.toml           # Dependencies (UV)
 ```
@@ -90,6 +98,7 @@ AZURE_OPENAI_API_KEY=your_key_here
 AZURE_OPENAI_ENDPOINT=https://your-endpoint.openai.azure.com/
 AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-small
 AZURE_OPENAI_LLM_DEPLOYMENT=gpt-4o-mini
+OPENAI_API_KEY=your_openai_key  # For o4-mini in evaluation
 ```
 
 ### Running the Pipeline
@@ -210,4 +219,47 @@ r3 = rag_chain.invoke("¿Cuánto dura ese programa?")
 # Clear history when done
 rag_chain.clear_history()
 ```
+
+## Evaluation
+
+The project includes a comprehensive evaluation system to measure RAG performance.
+
+### Quick Evaluation
+
+```bash
+# Run quick evaluation with 10 questions
+uv run python run_evaluation.py --mode quick
+```
+
+This evaluates:
+- Recall@k and Precision@k (retrieval quality)
+- Average context length (efficiency)
+- RAGAS metrics: context precision, faithfulness, factual correctness, context recall
+
+### Full Evaluation
+
+```bash
+# Run full evaluation with all questions and methods
+uv run python run_evaluation.py --mode full
+```
+
+Tests all retrieval methods (BM25, similarity, hybrid) with multiple k values across all 15 evaluation questions.
+
+### Evaluation Metrics
+
+**Retrieval Metrics**:
+- Recall@k: Proportion of relevant information retrieved (0-1, higher better)
+- Precision@k: Proportion of retrieved docs that are relevant (0-1, higher better)
+- Context Length: Average chars/tokens/docs per query
+
+**RAGAS Metrics** (using o4-mini):
+- Context Precision: Relevance of retrieved contexts (0-1, higher better)
+- Faithfulness: Answer grounded in context, no hallucinations (0-1, higher better)
+- Factual Correctness: Accuracy vs ground truth (0-1, higher better)
+- Context Recall: Ground truth coverage by retrieved context (0-1, higher better)
+
+Results are saved to `src/evaluation/results/` with timestamps.
+
+For detailed evaluation documentation, see [src/evaluation/README.md](src/evaluation/README.md).
+
 
