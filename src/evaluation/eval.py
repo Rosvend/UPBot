@@ -51,13 +51,16 @@ class RAGEvaluator:
         self.rag_chain = rag_chain
         self.eval_questions = self._load_eval_questions(eval_questions_path)
         
+        # Initialize Azure OpenAI LLM for RAGAS evaluation
+        # Use gpt-4.1-nano instead of o4-mini to avoid temperature restrictions
+        # o4-mini only allows temperature=1 and RAGAS tries to override it
         self.evaluator_llm = LangchainLLMWrapper(
             AzureChatOpenAI(
-                azure_deployment="o4-mini",
+                azure_deployment=os.getenv("AZURE_OPENAI_LLM_DEPLOYMENT", "gpt-4o-mini"),
                 openai_api_version="2024-12-01-preview",
                 azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
                 api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-                temperature=1,  # Required for o4-mini
+                temperature=0.1,  # RAGAS will use this for evaluation
             )
         )
         
@@ -479,23 +482,23 @@ class RAGEvaluator:
     
     def _get_relevant_categories(self, query_category: str) -> List[str]:
         """Map query category to relevant document categories."""
+        # Map to actual categories used in the data (English)
         category_mapping = {
             "Recuperación factual directa": [
-                "Ingenierías", "Becas y financiación", "Inscripciones y admisión",
-                "Información general UPB", "Contacto"
+                "engineering", "Apoyo financiero", "enrollment", "general", "contact"
             ],
             "Recomendación basada en preferencias": [
-                "Ingenierías", "Información general UPB"
+                "engineering", "general"
             ],
             "Detección de ausencia": [
-                "Ingenierías"
+                "engineering", "general"
             ],
             "Verificación de plan de estudios": [
-                "Ingenierías"
+                "engineering"
             ]
         }
         
-        return category_mapping.get(query_category, ["Ingenierías"])
+        return category_mapping.get(query_category, ["engineering"])
     
     def _save_results(self, results: Dict):
         """Save evaluation results to JSON file."""
