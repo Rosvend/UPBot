@@ -123,6 +123,9 @@ def _build_context_prefix(metadata: dict) -> str:
     if metadata.get('program_code'):
         parts.append(f"[CODIGO: {metadata['program_code']}]")
     
+    if metadata.get('program_duration'):
+        parts.append(f"[DURACION: {metadata['program_duration']}]")
+    
     if metadata.get('category'):
         category_map = {
             'engineering': 'Ingeniería',

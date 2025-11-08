@@ -4,15 +4,17 @@ A Retrieval-Augmented Generation (RAG) system to help prospective students explo
 
 ## Features
 
-- Conversational AI with GPT-4o-mini for natural interactions
-- Multi-strategy retrieval: BM25, Vector Similarity, MMR, and Hybrid RRF
-- Header-based chunking with semantic structure preservation
-- Rich metadata extraction from YAML frontmatter
-- Conversation memory for multi-turn dialogues
-- Source citations for transparency
-- Spanish language optimized
+- **Conversational AI** with GPT-4o-mini for natural interactions in Spanish
+- **Anti-Hallucination System**: Strict context prefixes and rules prevent mixing information between programs
+- **Multi-strategy retrieval**: BM25, Vector Similarity, MMR, and Hybrid RRF
+- **Header-based chunking** with semantic structure preservation (H1/H2/H3)
+- **Rich metadata extraction** from YAML frontmatter (program codes, duration, accreditation, etc.)
+- **Context-Enriched Chunks**: Each chunk tagged with [PROGRAMA:], [CODIGO:], [DURACION:], [CATEGORIA:], [SECCION:]
+- **Conversation memory** for multi-turn dialogues
+- **Source citations** for transparency
 - 17 curated documents covering 12 engineering programs plus metadata catalog
-- 368 optimized chunks with hierarchical metadata for efficient retrieval
+- 370 optimized chunks with hierarchical metadata for efficient retrieval
+- **Tested Anti-Hallucination**: 4/4 tests passing for accuracy (see `test_hallucination.py`)
 
 ## Tech Stack
 
@@ -112,8 +114,8 @@ uv run python src/rag/chain.py
 uv run python src/setup_retrieval.py
 ```
 **What it does**:
-- Loads 16 markdown documents
-- Creates ~217 optimized chunks
+- Loads 17 documents (16 MD + 1 metadata catalog)
+- Creates 370 context-enriched chunks with anti-hallucination prefixes
 - Initializes Azure OpenAI embeddings
 - Creates/loads FAISS vector store
 - Tests all retrieval methods (BM25, Similarity, MMR, Hybrid)
@@ -126,13 +128,13 @@ uv run python src/setup_retrieval.py
 ```bash
 uv run python src/loader/ingest.py
 ```
-**Output**: 16 documents with category metadata
+**Output**: 17 documents (16 MD + metadata.json) with category metadata
 
 **Chunk Documents**
 ```bash
 uv run python src/processing/chunking.py
 ```
-**Output**: ~217 chunks (avg 792 chars)
+**Output**: 370 chunks with context prefixes (avg ~800 chars)
 
 **Test Embeddings**
 ```bash
@@ -158,7 +160,7 @@ uv run python src/retrieval/retriever.py
 ### Interactive Chat
 ```bash
 # Run interactive chat interface
-uv run python src/example_usage.py
+uv run python src/main.py
 ```
 
 Type your questions in Spanish and the assistant will respond using the RAG system. Commands:
