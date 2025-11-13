@@ -1,6 +1,9 @@
-# UPBot: You Career Exploration Assistant
+# UPBot: Your AI Career Exploration Assistant
 
-UPBot is a Retrieval-Augmented Generation (RAG) system to help prospective students explore UPB's engineering programs conversationally in Spanish. The system uses manually curated markdown documents and provides multi-strategy retrieval for accurate, context-aware responses.
+Unsure what to study? Need quick, reliable information about engineering programs at Universidad Pontificia Bolivariana (UPB)?
+Meet UPBot — an intelligent, conversational assistant built to help prospective students explore UPB’s academic offerings in natural Spanish.
+
+UPBot is powered by a Retrieval-Augmented Generation (RAG) system designed for accurate, context-aware, and hallucination-resistant responses.
 
 ## Features
 
