@@ -1,6 +1,7 @@
 # UPBot: Your AI Career Exploration Assistant
 
 Unsure what to study? Need quick, reliable information about engineering programs at Universidad Pontificia Bolivariana (UPB)?
+
 Meet UPBot — an intelligent, conversational assistant built to help prospective students explore UPB’s academic offerings in natural Spanish.
 
 UPBot is powered by a Retrieval-Augmented Generation (RAG) system designed for accurate, context-aware, and hallucination-resistant responses.
